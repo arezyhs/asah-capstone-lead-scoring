@@ -9,18 +9,13 @@ Use case yang dikerjakan adalah **Predictive Lead Scoring Portal for Banking Sal
 - Akbar Rezy Hanara Setiyawan R284D5Y0128
 - 
 
-## 👥 Tim
-- 2 Machine Learning Engineer
-- 2 Backend Engineer
-- 1 Frontend Engineer
-
 ## 🎯 Tujuan
 - Mengembangkan **model machine learning** untuk prediksi lead scoring nasabah.
 - Menyediakan **API backend** untuk integrasi model.
 - Membangun **portal web berbasis React** untuk tim sales.
 
 ## 🛠️ Tech Stack
-- **Machine Learning:** Python, Jupyter Notebook, dst...
+- **Machine Learning:** lorem ipsum
 - **Backend:** lorem ipsum
 - **Frontend:** lorem ipsum
 - **Database:** lorem ipsum
