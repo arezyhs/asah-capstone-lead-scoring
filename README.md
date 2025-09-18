@@ -1,4 +1,4 @@
-# ASAH Capstone - Lead Scoring
+# Asah Capstone - Predictive Lead Scoring Portal for Banking Sales
 
 ## 📌 Deskripsi
 Proyek ini merupakan capstone dari program Studi Independen **Asah led by Dicoding in association with Accenture**.
