@@ -8,8 +8,9 @@ Use case yang dikerjakan adalah **Predictive Lead Scoring Portal for Banking Sal
 ## 🕴️ Anggota
 - Akbar Rezy Hanara Setiyawan R284D5Y0128
 - Fayzul Haq 
-- Augie Bryan Athalla m296d5y0308
-  
+- Ahmad Misbach
+- Augie Bryan Athalla M296D5Y0308
+
 ## 🎯 Tujuan
 - Mengembangkan **model machine learning** untuk prediksi lead scoring nasabah.
 - Menyediakan **API backend** untuk integrasi model.
