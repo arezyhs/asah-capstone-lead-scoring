@@ -10,6 +10,7 @@ Use case yang dikerjakan adalah **Predictive Lead Scoring Portal for Banking Sal
 - Fayzul Haq 
 - Ahmad Misbach
 - Augie Bryan Athalla M296D5Y0308
+- Bram Prastyo Nugroho
 
 ## 🎯 Tujuan
 - Mengembangkan **model machine learning** untuk prediksi lead scoring nasabah.
