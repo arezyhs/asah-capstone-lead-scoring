@@ -1,0 +1,92 @@
+{
+  "leads": [
+    {
+      "id": "CUST-001",
+      "customer_name": "John Doe",
+      "probability_score": 95,
+      "job": "Manager",
+      "loan_status": "No Loan",
+      "key_information": {
+        "customer_id": "CUST-001",
+        "customer_name": "John Doe",
+        "probability_score": 95,
+        "status_target": "no"
+      },
+      "demographic_profile": {
+        "age": 45,
+        "job": "Manager",
+        "marital_status": "married",
+        "education": "tertiary"
+      },
+      "financial_profile": {
+        "defaulted_credit": "no",
+        "average_balance": 1500,
+        "housing_loan": "yes",
+        "personal_loan": "no"
+      },
+      "campaign_history": {
+        "last_contact_date": "15 May",
+        "contact_type": "cellular",
+        "duration_seconds": 320,
+        "previous_outcome": "failure",
+        "campaign_contacts": 2,
+        "previous_contacts": 1,
+        "days_since_previous": 90
+      }
+    },
+    {
+      "id": "CUST-002",
+      "customer_name": "Lukman",
+      "probability_score": 87,
+      "job": "Technician",
+      "loan_status": "Has Loan",
+      "key_information": {
+        "customer_id": "CUST-002",
+        "customer_name": "Lukman",
+        "probability_score": 87,
+        "status_target": "yes"
+      },
+      "demographic_profile": {
+        "age": 32,
+        "job": "Technician",
+        "marital_status": "single",
+        "education": "secondary"
+      },
+      "financial_profile": {
+        "defaulted_credit": "no",
+        "average_balance": 2200,
+        "housing_loan": "yes",
+        "personal_loan": "yes"
+      },
+      "campaign_history": {
+        "last_contact_date": "10 April",
+        "contact_type": "telephone",
+        "duration_seconds": 180,
+        "previous_outcome": "other",
+        "campaign_contacts": 1,
+        "previous_contacts": 0,
+        "days_since_previous": -1
+      }
+    }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "leadId": "CUST-001",
+      "note": "Called customer, no answer.",
+      "timestamp": "2025-11-08T10:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "leadId": "CUST-001",
+      "note": "Customer interested, will call back.",
+      "timestamp": "2025-11-09T14:00:00.000Z"
+    },
+    {
+      "leadId": "CUST-002",
+      "note": "aaaa",
+      "timestamp": "2025-11-14T14:01:34.663Z",
+      "id": 3
+    }
+  ]
+}
