@@ -1,33 +1,73 @@
-# Backend — Lead Scoring Inference (PoC)
+# Lead Scoring Backend API
 
-This backend is a minimal FastAPI-based inference service for the Lead Scoring PoC. It includes a small dummy inference implementation so the service runs without an actual model artifact. Replace the dummy logic with your real preprocessing and model loading.
+Professional FastAPI backend for ML-powered lead scoring system.
 
-Quick start (Windows PowerShell):
+## Features
 
-1. Create & activate a virtual environment:
+- **ML Model Inference**: Real-time lead scoring predictions
+- **Authentication**: JWT-based user authentication
+- **Lead Management**: CRUD operations for leads
+- **Health Monitoring**: API health checks and monitoring
+- **Professional Structure**: Clean architecture with separation of concerns
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+## Project Structure
+
+```
+backend/
+├── app/
+│   ├── __init__.py          # Package initialization
+│   ├── main.py              # FastAPI application and routes
+│   ├── config.py            # Configuration settings
+│   ├── schemas.py           # Pydantic models and schemas
+│   ├── inference.py         # ML model service
+│   ├── auth.py              # Authentication utilities
+│   └── database.py          # Data access layer
+├── models/                  # ML model artifacts
+│   ├── model_final_xgb.pkl
+│   ├── scaler.pkl
+│   └── model_columns.pkl
+└── requirements.txt         # Python dependencies
+│   ├── __init__.py
+│   ├── main.py
+│   ├── inference.py
+│   ├── schemas.py
+│
+├── models
+│   ├── model.joblib
+│   ├── scaler.pkl
+│   ├── model_columns.pkl
+│
+├── tests
+│   ├── test_api.py
+│
+├── docs
+│   ├── API.md
+│   ├── sample_payloads.json
+│   ├── WORK_DONE.md
 ```
 
+## Quick Start
+1. Buat & aktifkan virtual environment:
+   ```powershell
+   python -m venv .venv
+   .\.venv\Scripts\Activate.ps1
+   ```
 2. Install dependencies:
+   ```powershell
+   pip install -r requirements.txt
+   ```
+3. Jalankan server:
+   ```powershell
+   uvicorn app.main:app --reload --port 8080
+   ```
 
-```powershell
-pip install -r requirements.txt
-```
-
-3. Run locally with Uvicorn:
-
-```powershell
-uvicorn app.main:app --reload --port 8080
-```
-
-API endpoints:
+## API Endpoints
 - GET `/health` — service health
 - POST `/predict` — request body: `{ "features": { ... } }`, response: `{ probability, score, model_version }`
 - GET `/metadata` — returns `model_version` and expected features
 
-Development notes:
-- Place a serialized model at `backend/model.joblib` (optional). `app.inference.ModelService` will attempt to load it.
-- Add real preprocessing logic to `app/inference.py` to match training pipeline.
+## Catatan
+- Artefak model untuk inference diletakkan di `/models`
+- Dokumentasi API dan contoh payload di `/docs`
+- Semua source code FastAPI di `/app`
+- Tes di `/tests`

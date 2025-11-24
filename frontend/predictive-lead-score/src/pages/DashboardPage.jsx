@@ -5,7 +5,7 @@ import LeadTable from '../components/LeadTable';
 function DashboardPage() {
   const [leads, setLeads] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('probability_score');
+  const [sortBy, setSortBy] = useState('score');
   const [sortOrder, setSortOrder] = useState('desc');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -56,8 +56,8 @@ function DashboardPage() {
           value={`${sortBy}:${sortOrder}`}
           className="px-4 py-2 rounded-md border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#85CC2C]"
         >
-          <option value="probability_score:desc">Sort by Probability Score (High to Low)</option>
-          <option value="probability_score:asc">Sort by Probability Score (Low to High)</option>
+          <option value="score:desc">Sort by Probability Score (High to Low)</option>
+          <option value="score:asc">Sort by Probability Score (Low to High)</option>
           <option value="job:asc">Sort by Job (A-Z)</option>
         </select>
       </div>

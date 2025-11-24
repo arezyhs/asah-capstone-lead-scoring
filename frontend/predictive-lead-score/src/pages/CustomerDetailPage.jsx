@@ -74,7 +74,7 @@ function CustomerDetailPage() {
           Customer ID: {customer.id}
         </span>
       </div>
-      <h3 className="mb-8 text-xl font-semibold text-gray-800">{customer.customer_name}</h3>
+      <h3 className="mb-8 text-xl font-semibold text-gray-800">{customer.name}</h3>
 
       <div className="flex flex-wrap gap-5 mb-8">
         <InfoCard title="Key Information" dataObject={customer.key_information} />

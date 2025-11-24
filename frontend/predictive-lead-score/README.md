@@ -1,5 +1,24 @@
 # React + Vite
 
+Struktur folder frontend:
+- /src: source code React
+  - /components: komponen UI
+  - /api: service API
+  - /pages: halaman aplikasi
+- /public: static assets
+
+Setup:
+1. Install dependencies:
+```bash
+npm install
+```
+2. Jalankan aplikasi:
+```bash
+npm run dev
+```
+
+Dokumentasi lebih lanjut ada di /docs
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
