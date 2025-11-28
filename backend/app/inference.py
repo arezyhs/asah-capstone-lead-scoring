@@ -198,15 +198,24 @@ class ModelService:
             # Prepare features
             features_df = self.prepare_features(raw_features)
             
-            # Scale features (use .values to avoid column name mismatch issues)
-            scaled_features = self.scaler.transform(features_df.values)
+            # Extract only numerical features that the scaler was trained on
+            numerical_features = ['age', 'campaign', 'previous', 'emp.var.rate', 
+                                'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']
             
-            # Get prediction probability
-            prediction_proba = self.model.predict_proba(scaled_features)[0]
+            # Scale only the numerical features
+            numerical_data = features_df[numerical_features].values
+            scaled_numerical = self.scaler.transform(numerical_data)
+            
+            # Replace numerical columns with scaled values
+            features_scaled = features_df.copy()
+            features_scaled[numerical_features] = scaled_numerical
+            
+            # Get prediction probability using all 46 features (scaled numerical + categorical)
+            prediction_proba = self.model.predict_proba(features_scaled.values)[0]
             probability = float(prediction_proba[1])  # Probability of 'yes' class
             
             # Get binary prediction  
-            prediction = self.model.predict(scaled_features)[0]
+            prediction = self.model.predict(features_scaled.values)[0]
             prediction_label = "yes" if prediction == 1 else "no"
             
             # Determine risk category
