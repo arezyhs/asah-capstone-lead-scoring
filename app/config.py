@@ -11,6 +11,7 @@ from pydantic import BaseModel
 
 class Settings(BaseModel):
     """Application settings with environment variable support."""
+    model_config = {"protected_namespaces": ()}
     
     # API Configuration
     app_name: str = "Lead Scoring Inference API"

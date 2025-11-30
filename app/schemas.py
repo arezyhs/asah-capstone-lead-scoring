@@ -21,6 +21,8 @@ class PredictRequest(BaseModel):
     features: Dict[str, Any]
 
 class PredictResponse(BaseModel):
+    model_config = {"protected_namespaces": ()}
+    
     probability: float
     score: int
     model_version: str
@@ -30,6 +32,8 @@ class HealthResponse(BaseModel):
     uptime: int
 
 class MetadataResponse(BaseModel):
+    model_config = {"protected_namespaces": ()}
+    
     model_version: str
     features: List[str]
 
