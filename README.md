@@ -1,73 +1,72 @@
-# Lead Scoring Backend API
+# 🎯 Lead Scoring Predictive Analytics
 
-Professional FastAPI backend for ML-powered lead scoring system.
+Web application untuk memprediksi skor lead menggunakan machine learning. Sistem ini membantu tim sales mengidentifikasi lead yang paling berpotensi untuk conversion.
 
-## Features
+## 🚀 Features
 
-- **ML Model Inference**: Real-time lead scoring predictions
-- **Authentication**: JWT-based user authentication
-- **Lead Management**: CRUD operations for leads
-- **Health Monitoring**: API health checks and monitoring
-- **Professional Structure**: Clean architecture with separation of concerns
+- **Predictive Lead Scoring** - ML model XGBoost untuk prediksi skor lead
+- **Web Dashboard** - Interface React untuk monitoring dan analisis
+- **Real-time API** - FastAPI backend dengan inference real-time
+- **Lead Management** - CRUD operations untuk data lead
 
-## Project Structure
+## 🏗️ Tech Stack
 
-```
-backend/
-├── app/
-│   ├── __init__.py          # Package initialization
-│   ├── main.py              # FastAPI application and routes
-│   ├── config.py            # Configuration settings
-│   ├── schemas.py           # Pydantic models and schemas
-│   ├── inference.py         # ML model service
-│   ├── auth.py              # Authentication utilities
-│   └── database.py          # Data access layer
-├── models/                  # ML model artifacts
-│   ├── model_final_xgb.pkl
-│   ├── scaler.pkl
-│   └── model_columns.pkl
-└── requirements.txt         # Python dependencies
-│   ├── __init__.py
-│   ├── main.py
-│   ├── inference.py
-│   ├── schemas.py
-│
-├── models
-│   ├── model.joblib
-│   ├── scaler.pkl
-│   ├── model_columns.pkl
-│
-├── tests
-│   ├── test_api.py
-│
-├── docs
-│   ├── API.md
-│   ├── sample_payloads.json
-│   ├── WORK_DONE.md
+- **Backend**: FastAPI + PostgreSQL + XGBoost
+- **Frontend**: React + Vite + TailwindCSS  
+- **ML Model**: XGBoost Classifier
+- **Deployment**: Railway (Backend) + Vercel (Frontend)
+
+## ⚡ Quick Setup
+
+### 1. Backend Setup
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Start backend server
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-## Quick Start
-1. Buat & aktifkan virtual environment:
-   ```powershell
-   python -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   ```
-2. Install dependencies:
-   ```powershell
-   pip install -r requirements.txt
-   ```
-3. Jalankan server:
-   ```powershell
-   uvicorn app.main:app --reload --port 8080
-   ```
+### 2. Frontend Setup
+```bash
+cd frontend
 
-## API Endpoints
-- GET `/health` — service health
-- POST `/predict` — request body: `{ "features": { ... } }`, response: `{ probability, score, model_version }`
-- GET `/metadata` — returns `model_version` and expected features
+# Install dependencies
+npm install
 
-## Catatan
-- Artefak model untuk inference diletakkan di `/models`
-- Dokumentasi API dan contoh payload di `/docs`
-- Semua source code FastAPI di `/app`
-- Tes di `/tests`
+# Start development server
+npm run dev
+```
+
+### 3. Database Setup
+```bash
+# Run import script to populate database
+cd scripts
+python import_data.py
+```
+
+## 🌐 Access
+
+- **Backend API**: http://localhost:8000
+- **Frontend Web**: http://localhost:5173
+- **API Health**: http://localhost:8000/health
+
+## 📁 Project Structure
+
+```
+├── app/           # FastAPI backend
+├── frontend/      # React frontend
+├── models/        # ML model files
+├── deployment/    # Docker & deployment configs
+├── docs/          # Documentation
+├── scripts/       # Utility scripts
+└── tests/         # Test files
+```
+
+## 🔑 Default Login
+
+- **Username**: `sales_user_01`
+- **Password**: `password123`
+
+---
+*Predictive Lead Scoring System - Capstone Project A25-CS065*
