@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080';
+// Environment-aware API URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
+  (import.meta.env.PROD 
+    ? 'https://your-railway-app.railway.app'  // Will update this after Railway deployment
+    : 'http://localhost:8080');
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
