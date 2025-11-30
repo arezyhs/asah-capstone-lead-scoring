@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Union, Optional
 
 import pandas as pd
+import xgboost
 
 # Configure logging
 logger = logging.getLogger(__name__)
