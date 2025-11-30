@@ -13,7 +13,7 @@ from .config import settings
 # --- AUTO CREATE TABLES ---
 # Baris ini akan otomatis membuat tabel di database jika belum ada
 # (Cara cepat tanpa ribet migrasi manual untuk tahap awal)
-# models.Base.metadata.create_all(bind=engine)  # Comment out for now
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title=settings.app_name)
 
