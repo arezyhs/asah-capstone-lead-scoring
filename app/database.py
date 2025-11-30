@@ -6,9 +6,11 @@ from sqlalchemy.orm import sessionmaker
 # Use environment variable for production, fallback to local for development
 DATABASE_URL = os.getenv("DATABASE_URL") or "postgresql://postgres:1453SArezhhhh@localhost/lead_scoring"
 
-# Railway PostgreSQL URLs sometimes need this fix
+# Railway PostgreSQL URLs sometimes need this fix for both postgres:// and postgresql://
 if DATABASE_URL.startswith("postgres://"):
-    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+psycopg://", 1)
+elif DATABASE_URL.startswith("postgresql://"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+psycopg://", 1)
 
 SQLALCHEMY_DATABASE_URL = DATABASE_URL
 
