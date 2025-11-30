@@ -13,7 +13,7 @@ from .config import settings
 # --- AUTO CREATE TABLES ---
 # Baris ini akan otomatis membuat tabel di database jika belum ada
 # (Cara cepat tanpa ribet migrasi manual untuk tahap awal)
-models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine)  # Comment out for now
 
 app = FastAPI(title=settings.app_name)
 
@@ -25,12 +25,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model_service = ModelService()
+# model_service = ModelService()  # Comment out for now to avoid model loading issues
+model_service = None  # Will initialize later
 _start_time = time.time()
 
 # --- Endpoints ---
 
-@app.get("/health", response_model=schemas.HealthResponse)
+@app.get("/")
+def root():
+    return {"message": "Lead Scoring API"}
+
+@app.get("/health")
 def health_check():
     return {"status": "ok", "uptime": int(time.time() - _start_time)}
 
