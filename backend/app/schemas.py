@@ -1,87 +1,101 @@
-"""
-Pydantic schemas for Lead Scoring API
-
-This module defines all request/response models used in the API endpoints.
-"""
-
 from typing import Dict, Any, List, Optional
 from pydantic import BaseModel, Field
 
+# --- Common/Shared Schemas ---
+class NoteBase(BaseModel):
+    leadId: str
+    note: str
+    timestamp: Optional[str] = None
 
-# ML Prediction schemas
+class NoteCreate(NoteBase):
+    pass
+
+class NoteResponse(NoteBase):
+    id: int
+    
+class Config:
+    from_attributes = True
+
+# --- ML & System Schemas ---
 class PredictRequest(BaseModel):
-    """Request schema for ML prediction endpoint."""
-    features: Dict[str, Any] = Field(
-        ..., 
-        description="Feature dictionary for ML model prediction"
-    )
-
+    features: Dict[str, Any]
 
 class PredictResponse(BaseModel):
-    """Response schema for ML prediction endpoint."""
-    probability: float = Field(
-        ..., 
-        description="Predicted probability (0.0-1.0)",
-        ge=0.0,
-        le=1.0
-    )
-    score: int = Field(
-        ..., 
-        description="Lead score (0-100)",
-        ge=0,
-        le=100
-    )
-    model_version: str = Field(
-        ..., 
-        description="Version of the ML model used"
-    )
+    probability: float
+    score: int
+    model_version: str
 
-
-# System health schemas
 class HealthResponse(BaseModel):
-    """Response schema for health check endpoint."""
-    status: str = Field(..., description="API status")
-    uptime: int = Field(..., description="Uptime in seconds")
-
+    status: str
+    uptime: int
 
 class MetadataResponse(BaseModel):
-    """Response schema for model metadata endpoint."""
-    model_version: str = Field(..., description="ML model version")
-    features: List[str] = Field(
-        default_factory=list, 
-        description="Expected feature names"
-    )
+    model_version: str
+    features: List[str]
 
-
-# Authentication schemas
+# --- Auth Schemas ---
 class LoginRequest(BaseModel):
-    """Request schema for user authentication."""
-    username: str = Field(..., description="User username")
-    password: str = Field(..., description="User password")
-
+    username: str
+    password: str
 
 class LoginResponse(BaseModel):
-    """Response schema for successful authentication."""
-    token: str = Field(..., description="JWT authentication token")
-    user: Dict[str, Any] = Field(..., description="User information")
+    token: str
+    user: Dict[str, Any]
 
+# --- Detailed Lead Schemas (Sesuai Struktur Database & Frontend) ---
+class KeyInformation(BaseModel):
+    customer_id: str
+    customer_name: str
+    probability_score: int
+    status_target: str
 
-# Lead management schemas
-class LeadResponse(BaseModel):
-    """Response schema for lead information."""
-    id: int = Field(..., description="Lead unique identifier")
-    name: str = Field(..., description="Lead customer name")
-    probability: float = Field(
-        ..., 
-        description="Lead conversion probability (0.0-1.0)",
-        ge=0.0,
-        le=1.0
-    )
-    score: int = Field(
-        ..., 
-        description="Lead score (0-100)",
-        ge=0,
-        le=100
-    )
-    job: Optional[str] = Field(None, description="Customer job/occupation")
-    loan_status: Optional[str] = Field(None, description="Current loan status")
+class DemographicProfile(BaseModel):
+    age: int
+    job: str
+    marital_status: str
+    education: str
+
+class FinancialProfile(BaseModel):
+    defaulted_credit: str
+    average_balance: int
+    housing_loan: str
+    personal_loan: str
+
+class CampaignHistory(BaseModel):
+    last_contact_date: str
+    contact_type: str
+    duration_seconds: int
+    previous_outcome: str
+    campaign_contacts: int
+    previous_contacts: int
+    days_since_previous: int
+
+# Pastikan LeadListResponse menggunakan String ID dan customer_name
+class LeadListResponse(BaseModel):
+    id: str  
+    customer_name: str 
+    probability_score: float
+    score: int
+    job: Optional[str] = None
+    loan_status: Optional[str] = None
+    
+    class Config:
+        from_attributes = True
+
+# Pastikan LeadDetailResponse punya kolom nested (JSON)
+class LeadDetailResponse(BaseModel):
+    id: str
+    customer_name: str
+    probability_score: float
+    score: int
+    job: Optional[str] = None
+    loan_status: Optional[str] = None
+    
+    # Kolom JSON Wajib Ada agar halaman Detail tidak error
+    key_information: Optional[Any] = None
+    demographic_profile: Optional[Any] = None
+    financial_profile: Optional[Any] = None
+    campaign_history: Optional[Any] = None
+
+    class Config:
+        from_attributes = True
