@@ -1,23 +1,21 @@
 import React from 'react';
 
 const InfoCard = ({ title, dataObject }) => {
-  if (!dataObject) return null;
-
-  const formatKey = (key) => {
-    return key.replace(/_/g, ' ').replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-  };
-
   return (
-    <div className="bg-white p-5 rounded-lg shadow-sm mb-5 flex-1 basis-[48%]">
-      <h4 className="text-lg font-semibold text-[#85CC2C] mb-4">{title}</h4>
-      {Object.entries(dataObject).map(([key, value]) => (
-        <p key={key} className="mb-1 flex justify-between border-b border-dotted border-gray-200 pb-1 text-gray-700">
-          <strong className="capitalize text-gray-600">
-             {formatKey(key)}:
-          </strong> 
-          <span>{String(value)}</span>
-        </p>
-      ))}
+    <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-sm flex-1 basis-[48%] min-w-[300px] transition-colors duration-300">
+      <h4 className="mb-4 text-lg font-semibold text-gray-800 dark:text-gray-200 border-b border-gray-100 dark:border-gray-700 pb-2">
+        {title}
+      </h4>
+      <div className="space-y-3">
+        {Object.entries(dataObject).map(([key, value]) => (
+          <div key={key} className="flex justify-between items-center text-sm">
+            <span className="text-gray-500 dark:text-gray-400 font-medium">{key}</span>
+            <span className="text-gray-800 dark:text-gray-100 font-semibold text-right max-w-[60%] truncate">
+              {value}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
