@@ -1,20 +1,34 @@
 from typing import Dict, Any, List, Optional
-from pydantic import BaseModel, Field
+from datetime import datetime
+from pydantic import BaseModel, Field, ConfigDict
 
 # --- Common/Shared Schemas ---
 class NoteBase(BaseModel):
     leadId: str
     note: str
-    timestamp: Optional[str] = None
+    # Input dari Frontend dikirim sebagai string ISO
+    timestamp: Optional[str] = None 
 
 class NoteCreate(NoteBase):
     pass
 
-class NoteResponse(NoteBase):
+# --- FIX: NoteResponse yang "Cerdas" ---
+class NoteResponse(BaseModel):
     id: int
     
-class Config:
-    from_attributes = True
+    # 1. Alias: "Kalau ketemu 'lead_id' (dari database), anggap itu 'leadId'"
+    leadId: str = Field(validation_alias="lead_id") 
+    
+    note: str
+    
+    # 2. Datetime: Terima format datetime (dari DB) ATAU string (dari POST), nanti otomatis dirapikan
+    timestamp: Optional[datetime] = None
+
+    # 3. Config Sakti:
+    # - from_attributes=True: Bisa baca data dari Database (ORM)
+    # - populate_by_name=True: Bisa baca data dari Dictionary manual (POST)
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)
+
 
 # --- ML & System Schemas ---
 class PredictRequest(BaseModel):
@@ -46,7 +60,7 @@ class LoginResponse(BaseModel):
     token: str
     user: Dict[str, Any]
 
-# --- Detailed Lead Schemas (Sesuai Struktur Database & Frontend) ---
+# --- Detailed Lead Schemas ---
 class KeyInformation(BaseModel):
     customer_id: str
     customer_name: str
@@ -55,26 +69,25 @@ class KeyInformation(BaseModel):
 
 class DemographicProfile(BaseModel):
     age: int
-    job: str
-    marital_status: str
-    education: str
+    job: Optional[str] = None
+    marital_status: Optional[str] = None
+    education: Optional[str] = None
 
 class FinancialProfile(BaseModel):
-    defaulted_credit: str
+    defaulted_credit: Optional[str] = None
     average_balance: int
-    housing_loan: str
-    personal_loan: str
+    housing_loan: Optional[str] = None
+    personal_loan: Optional[str] = None
 
 class CampaignHistory(BaseModel):
-    last_contact_date: str
-    contact_type: str
+    last_contact_date: Optional[str] = None
+    contact_type: Optional[str] = None
     duration_seconds: int
-    previous_outcome: str
+    previous_outcome: Optional[str] = None
     campaign_contacts: int
-    previous_contacts: int
+    previous_contacts: Optional[int] = 0
     days_since_previous: int
 
-# Pastikan LeadListResponse menggunakan String ID dan customer_name
 class LeadListResponse(BaseModel):
     id: str  
     customer_name: str 
@@ -83,10 +96,8 @@ class LeadListResponse(BaseModel):
     job: Optional[str] = None
     loan_status: Optional[str] = None
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
-# Pastikan LeadDetailResponse punya kolom nested (JSON)
 class LeadDetailResponse(BaseModel):
     id: str
     customer_name: str
@@ -95,11 +106,9 @@ class LeadDetailResponse(BaseModel):
     job: Optional[str] = None
     loan_status: Optional[str] = None
     
-    # Kolom JSON Wajib Ada agar halaman Detail tidak error
     key_information: Optional[Any] = None
     demographic_profile: Optional[Any] = None
     financial_profile: Optional[Any] = None
     campaign_history: Optional[Any] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

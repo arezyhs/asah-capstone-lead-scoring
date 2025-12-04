@@ -1,17 +1,12 @@
-// tailwind.config.js (contoh menambahkan warna kustom)
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class', // <--- Wajib ada
   theme: {
-    extend: {
-      colors: {
-        'primary': '#85CC2C', // Sekarang Anda bisa menggunakan `bg-primary`, `text-primary`
-        'primary-dark': '#72b02a', // Untuk `hover:bg-primary-dark`
-      },
-    },
+    extend: {},
   },
   plugins: [],
 }
