@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Use environment variable for production, fallback to local for development
-DATABASE_URL = os.getenv("DATABASE_URL") or "postgresql://postgres:1453SArezhhhh@localhost/lead_scoring"
+DATABASE_URL = "postgresql://neondb_owner:npg_P2UdN8bCQqaj@ep-tiny-lab-a17ivhll.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 
 # Railway PostgreSQL URLs sometimes need this fix for both postgres:// and postgresql://
 if DATABASE_URL.startswith("postgres://"):

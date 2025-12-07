@@ -25,6 +25,10 @@ def import_csv_data(csv_path, limit=None):
     
     # Inisialisasi Database & Model ML
     db = SessionLocal()
+    
+    print("🛠️ Memastikan tabel database tersedia...")
+    models.Base.metadata.create_all(bind=engine)
+    
     model_service = ModelService()
     
     # Cek koneksi model
@@ -130,7 +134,7 @@ def import_csv_data(csv_path, limit=None):
 
 if __name__ == "__main__":
     # Lokasi file CSV relatif dari folder backend
-    csv_file_path = "../ml/dataset/bank.csv" 
+    csv_file_path = "ml/dataset/bank.csv" 
     
     if os.path.exists(csv_file_path):
         # Kita import 100 data saja dulu agar cepat

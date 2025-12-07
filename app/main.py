@@ -26,7 +26,7 @@ app.add_middleware(
 )
 
 # model_service = ModelService()  # Comment out for now to avoid model loading issues
-model_service = None  # Will initialize later
+model_service = ModelService() # Will initialize later
 _start_time = time.time()
 
 # --- Endpoints ---
