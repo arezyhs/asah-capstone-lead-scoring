@@ -1,64 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext";
+import LoginPage from "./pages/LoginPage";
+import CustomerDetailPage from "./pages/CustomerDetailPage";
 
-import authService from './api/authService';
-
-import TopBar from './components/TopBar';
-import LoginPage from './pages/LoginPage';
-import DashboardPage from './pages/DashboardPage';
-import CustomerDetailPage from './pages/CustomerDetailPage';
+// Layout & Pages Baru
+import MainLayout from "./layouts/MainLayout";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import LeadsDataPage from "./pages/LeadsDataPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState('');
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const user = authService.getCurrentUser();
-    if (user && user.token && user.name) {
-      setIsLoggedIn(true);
-      setUserName(user.name);
-    }
-    setLoading(false);
-  }, []);
-
-  const handleLoginSuccess = (name) => {
-    setIsLoggedIn(true);
-    setUserName(name);
+  const handleLoginSuccess = (userName) => {
+    console.log("Login Berhasil! User:", userName);
   };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUserName('');
-  };
-
-  if (loading) {
-    return <div className="flex items-center justify-center min-h-screen">Loading application...</div>;
-  }
 
   return (
-    <Router>
-      {isLoggedIn && <TopBar userName={userName} onLogout={handleLogout} />}
-
+    <ThemeProvider>
       <Routes>
-        <Route 
-          path="/login" 
-          element={isLoggedIn ? <Navigate to="/dashboard" replace /> : <LoginPage onLoginSuccess={handleLoginSuccess} />} 
-        />
         <Route
-          path="/dashboard"
-          element={isLoggedIn ? <DashboardPage /> : <Navigate to="/login" replace />}
+          path="/login"
+          element={<LoginPage onLoginSuccess={handleLoginSuccess} />}
         />
-        <Route
-          path="/customer/:id"
-          element={isLoggedIn ? <CustomerDetailPage /> : <Navigate to="/login" replace />}
-        />
-        <Route
-          path="/"
-          element={isLoggedIn ? <Navigate to="/dashboard" replace /> : <Navigate to="/login" replace />}
-        />
+
+        <Route path="/dashboard" element={<MainLayout />}>
+          <Route
+            index
+            element={<Navigate to="/dashboard/leads" replace />}
+          />
+
+          <Route path="analytics" element={<AnalyticsPage />} />
+          <Route path="leads" element={<LeadsDataPage />} />
+          <Route path="leads/:id" element={<CustomerDetailPage />} />
+
+          <Route path="profile" element={<ProfilePage />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
-    </Router>
+    </ThemeProvider>
   );
 }
 

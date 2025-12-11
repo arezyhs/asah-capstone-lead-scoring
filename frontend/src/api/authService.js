@@ -12,10 +12,22 @@ const authService = {
       throw error;
     }
   },
+
+  getProfile: async () => {
+    try {
+      const response = await apiClient.get('/api/profile');
+      return response.data;
+    } catch (error) {
+      console.error('Failed to fetch profile:', error);
+      throw error;
+    }
+  },
+
   logout: () => {
     localStorage.removeItem('userToken');
     localStorage.removeItem('userName');
   },
+  
   getCurrentUser: () => {
     const token = localStorage.getItem('userToken');
     const userName = localStorage.getItem('userName');

@@ -32,7 +32,6 @@ const leadService = {
   
   getLeadNotes: async (leadId) => {
     try {
-      // Memanggil endpoint GET /notes?leadId=... di Backend
       const response = await apiClient.get('/notes', { 
         params: { leadId } 
       });
@@ -56,7 +55,16 @@ const leadService = {
       console.error(`Save Lead Note API for ID ${leadId} error:`, error);
       throw error;
     }
+  },
+
+  recordCall: async (leadId) => {
+    try {
+      await apiClient.post('/calls', { leadId });
+    } catch (error) {
+      console.error('Failed to record call activity', error);
+    }
   }
+
 };
 
 export default leadService;

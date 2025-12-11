@@ -29,3 +29,12 @@ class Note(Base):
     lead_id = Column(String, ForeignKey("leads.id")) 
     note = Column(String)
     timestamp = Column(DateTime(timezone=True), server_default=func.now())
+    
+# --- TAMBAHAN BARU: TABEL CALL LOG ---
+class CallLog(Base):
+    __tablename__ = "call_logs"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    lead_id = Column(String, index=True)
+    username = Column(String, index=True) 
+    timestamp = Column(DateTime(timezone=True), server_default=func.now())

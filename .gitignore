@@ -213,3 +213,5 @@ dist/
 
 # General
 .DS_Store
+"lead_scoring.db" 
+"lead_scoring.db" 

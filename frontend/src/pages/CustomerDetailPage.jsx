@@ -43,7 +43,6 @@ function CustomerDetailPage() {
     return obj && obj[key] !== undefined && obj[key] !== null ? obj[key] : defaultVal;
   };
 
-  // --- GENERATE NOMOR TELEPON PALSU (DUMMY) ---
   const getPhoneNumber = () => {
     if (!customer || !customer.id) return '-';
     const numericId = customer.id.replace(/\D/g, ''); 
@@ -53,12 +52,11 @@ function CustomerDetailPage() {
 
   const phoneNumber = getPhoneNumber();
 
-  // Handle Feature: Call
   const handleCallAction = () => {
+    leadService.recordCall(id);
     window.location.href = `tel:${phoneNumber}`;
   };
 
-  // Handle Feature: Save Note
   const handleSaveNote = async () => {
     if (!note.trim()) return;
     try {
@@ -70,7 +68,6 @@ function CustomerDetailPage() {
     }
   };
 
-  // Score Color Logic
   const getScoreColor = (score) => {
     if (score >= 80) return 'text-green-600 dark:text-green-400';
     if (score >= 50) return 'text-yellow-600 dark:text-yellow-400';
@@ -94,13 +91,16 @@ function CustomerDetailPage() {
   return (
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen font-sans pb-10 transition-colors duration-300">
       
-      <div className="bg-white dark:bg-gray-800 shadow-sm sticky top-16 z-30 px-6 py-4 border-b border-gray-100 dark:border-gray-700">
-        <button onClick={() => navigate('/dashboard')} className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white flex items-center gap-2 transition-colors font-medium text-sm">
-           <ArrowLeft className="w-4 h-4" /> Back to Dashboard
+      <div className="max-w-7xl mx-auto px-6 pt-6 mb-6">
+        <button 
+            onClick={() => navigate('/dashboard/leads')} 
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all font-medium text-sm shadow-sm"
+        >
+           <ArrowLeft className="w-4 h-4" /> Back to Leads Data
         </button>
       </div>
 
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto px-6">
         
         <div className="flex flex-col md:flex-row gap-6 mb-8">
           
