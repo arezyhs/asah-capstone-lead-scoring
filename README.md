@@ -43,7 +43,7 @@ npm run dev
 - POST /notes — tambah catatan
 
 ## Akses
-- Prod: https://predictive-lead-scoring.vercel.app
+- Prod: https://asah-capstone-frontend.vercel.app/login
 
 ## Kredensial Uji
 - Username: `sales_user_01`
