@@ -1,72 +1,57 @@
-# 🎯 Lead Scoring Predictive Analytics
+# SalesPilot
 
-Web application untuk memprediksi skor lead menggunakan machine learning. Sistem ini membantu tim sales mengidentifikasi lead yang paling berpotensi untuk conversion.
+Aplikasi lead scoring untuk memprioritaskan prospek dengan potensi konversi tertinggi. Capstone Dicoding (Case AC-03) — Tim A25-CS065.
 
-## 🚀 Features
+## Tim
+- Akbar Rezy Hanara S (R284D5Y0128) — React & Backend with AI
+- Ahmad Misbach (R284D5Y0099) — React & Backend with AI
+- Bram Prastyo Nugroho (R284D5Y0364) — React & Backend with AI
+- Augie Bryan Athalla (M296D5Y0308) — Machine Learning
+- Fayzul Haq (M284D5Y0624) — Machine Learning
 
-- **Predictive Lead Scoring** - ML model XGBoost untuk prediksi skor lead
-- **Web Dashboard** - Interface React untuk monitoring dan analisis
-- **Real-time API** - FastAPI backend dengan inference real-time
-- **Lead Management** - CRUD operations untuk data lead
+## Ringkasan
+- Prediksi probabilitas konversi dengan XGBoost (akurasi ~89%)
+- Dashboard: distribusi lead (job, usia, education, marital)
+- Detail lead: profil demografis/finansial, riwayat kampanye, catatan sales, call log
+- Performance: KPI user, conversion rate, aktivitas call
 
-## 🏗️ Tech Stack
+## Tech Stack
+- Frontend: React + Vite, TailwindCSS, React Router, Recharts (deploy: Vercel)
+- Backend: FastAPI (Python 3.13), SQLAlchemy, psycopg, Pydantic (deploy: Railway)
+- ML: XGBoost, scikit-learn; dataset Bank Marketing
+- Database: PostgreSQL (Neon)
 
-- **Backend**: FastAPI + PostgreSQL + XGBoost
-- **Frontend**: React + Vite + TailwindCSS  
-- **ML Model**: XGBoost Classifier
-- **Deployment**: Railway (Backend) + Vercel (Frontend)
-
-## ⚡ Quick Setup
-
-### 1. Backend Setup
+## Quickstart
 ```bash
-# Install dependencies
+git clone https://github.com/arezyhs/asah-capstone-lead-scoring.git
+
+# Backend
 pip install -r requirements.txt
+uvicorn app.main:app --host 0.0.0.0 --port 8000
 
-# Start backend server
-python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
-```
-
-### 2. Frontend Setup
-```bash
+# Frontend
 cd frontend
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
-### 3. Database Setup
-```bash
-# Run import script to populate database
-cd scripts
-python import_data.py
-```
+## Endpoint Ringkas
+- GET /health — status
+- POST /api/auth/login — login dummy
+- GET /leads — list lead
+- GET /leads/{id} — detail lead
+- POST /notes — tambah catatan
 
-## 🌐 Access
+## Akses
+- Prod: https://predictive-lead-scoring.vercel.app
 
-- **Backend API**: http://localhost:8000
-- **Frontend Web**: http://localhost:5173
-- **API Health**: http://localhost:8000/health
+## Kredensial Uji
+- Username: `sales_user_01`
+- Password: `password123`
 
-## 📁 Project Structure
-
-```
-├── app/           # FastAPI backend
-├── frontend/      # React frontend
-├── models/        # ML model files
-├── deployment/    # Docker & deployment configs
-├── docs/          # Documentation
-├── scripts/       # Utility scripts
-└── tests/         # Test files
-```
-
-## 🔑 Default Login
-
-- **Username**: `sales_user_01`
-- **Password**: `password123`
+## Lisensi
+Capstone Project Dicoding A25-CS065.
 
 ---
-*Predictive Lead Scoring System - Capstone Project A25-CS065*
+
+**Dikembangkan oleh Tim A25-CS065 - Dicoding Asah Capstone Bootcamp**
