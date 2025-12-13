@@ -138,7 +138,7 @@ if __name__ == "__main__":
     
     if os.path.exists(csv_file_path):
         # Kita import 100 data saja dulu agar cepat
-        import_csv_data(csv_file_path, limit=100) 
+        import_csv_data(csv_file_path, limit=None) 
     else:
         logger.error(f"❌ File tidak ditemukan: {csv_file_path}")
         print("Pastikan Anda menjalankan script ini dari dalam folder 'backend/'")
