@@ -52,24 +52,22 @@ function CustomerDetailPage() {
 
   const phoneNumber = getPhoneNumber();
 
-  // --- FUNGSI BARU: FORMAT TANGGAL KE WIB ---
+  // --- FUNGSI BARU: Format Tanggal (Tanpa Jam) ---
   const formatDate = (timestamp) => {
     if (!timestamp) return 'Just now';
     
-    // Fix untuk SQLite: Jika timestamp tidak punya info zona waktu (Z atau +),
-    // kita tambahkan 'Z' agar browser menganggapnya sebagai UTC, lalu dikonversi ke WIB.
+    // Fix untuk SQLite: Pastikan format ISO valid
     const dateStr = timestamp.includes('Z') || timestamp.includes('+') 
       ? timestamp 
       : timestamp + 'Z';
       
-    return new Date(dateStr).toLocaleString('id-ID', { 
+    // Hanya menampilkan tanggal
+    return new Date(dateStr).toLocaleDateString('id-ID', { 
       timeZone: 'Asia/Jakarta',
       day: 'numeric', 
       month: 'short', 
-      year: 'numeric', 
-      hour: '2-digit', 
-      minute: '2-digit' 
-    }) + ' WIB';
+      year: 'numeric'
+    });
   };
   // ------------------------------------------
 
@@ -248,7 +246,6 @@ function CustomerDetailPage() {
                         <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">{n.note}</p>
                         <div className="flex items-center justify-end mt-2 gap-1 text-[10px] text-gray-400">
                           <Clock className="w-3 h-3" />
-                          {/* MENGGUNAKAN FUNGSI BARU DI SINI */}
                           <span>{formatDate(n.timestamp)}</span>
                         </div>
                       </div>

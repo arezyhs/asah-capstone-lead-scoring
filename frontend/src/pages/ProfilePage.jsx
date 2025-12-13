@@ -23,19 +23,14 @@ function ProfilePage() {
       });
   }, []);
 
-  // --- HELPER: Generate Tanggal & Waktu Realtime WIB ---
-  const getRealtimeDateTime = (minutesAgo) => {
-    const date = new Date();
-    date.setMinutes(date.getMinutes() - minutesAgo);
-    
-    return date.toLocaleString('id-ID', {
-      day: '2-digit',
+  // --- HELPER: Format Tanggal (Tanpa Jam) ---
+  const formatDate = (timestamp) => {
+    if (!timestamp) return '-';
+    return new Date(timestamp).toLocaleDateString('id-ID', {
+      day: 'numeric',
       month: 'short',
-      year: 'numeric',
-      hour: '2-digit', 
-      minute: '2-digit', 
-      timeZone: 'Asia/Jakarta'
-    }).replace('.', ':') + ' WIB';
+      year: 'numeric'
+    });
   };
 
   if (loading) return <div className="p-10 text-center">Loading Profile...</div>;
@@ -133,7 +128,7 @@ function ProfilePage() {
                       </div>
                       <div className="flex items-center gap-1 text-[10px] text-gray-400 whitespace-nowrap">
                         <Clock size={10} />
-                        {getRealtimeDateTime(idx * 45 + 15)}
+                        {formatDate(item.timestamp)}
                       </div>
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -177,7 +172,7 @@ function ProfilePage() {
 
                       <div className="flex items-center gap-1 text-[10px] text-gray-400 whitespace-nowrap">
                         <Clock size={10} />
-                        {getRealtimeDateTime(idx * 20 + 5)}
+                        {formatDate(call.timestamp)}
                       </div>
                     </div>
                   </div>
