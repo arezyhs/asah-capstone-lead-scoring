@@ -1,35 +1,57 @@
-# React + Vite
 
-Struktur folder frontend:
-- /src: source code React
-  - /components: komponen UI
-  - /api: service API
-  - /pages: halaman aplikasi
-- /public: static assets
+# Frontend (SalesPilot)
 
-Setup:
-1. Install dependencies:
-```bash
-npm install
-```
-2. Jalankan aplikasi:
-```bash
-npm run dev
-```
+## Overview
+SalesPilot Frontend adalah aplikasi web berbasis React yang berfungsi sebagai antarmuka utama untuk pengguna dalam mengelola, memantau, dan menganalisis data lead scoring. Aplikasi ini menampilkan dashboard, tabel data leads, detail customer, serta fitur login dan manajemen profil.
 
-Dokumentasi lebih lanjut ada di /docs
+## Fitur Utama
+- Dashboard analitik distribusi leads (pekerjaan, usia, pendidikan, status pernikahan)
+- Tabel data leads dengan filter dan pencarian
+- Halaman detail customer (profil, riwayat kampanye, catatan sales, call log)
+- Login dan manajemen profil user
+- Sidebar navigasi dan topbar
+- Visualisasi data dengan Recharts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tech Stack
+- React (Vite)
+- TailwindCSS
+- React Router
+- Recharts
+- Context API (Theme)
+- Axios (API client)
 
-Currently, two official plugins are available:
+## Struktur Folder
+- `src/` - kode utama aplikasi
+  - `api/` - API client dan service
+  - `components/` - komponen UI
+  - `context/` - context global (theme)
+  - `layouts/` - layout utama
+  - `pages/` - halaman aplikasi
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup & Instalasi
+1. Masuk ke folder frontend:
+  ```bash
+  cd frontend
+  ```
+2. Install dependencies:
+  ```bash
+  npm install
+  ```
+3. Jalankan aplikasi:
+  ```bash
+  npm run dev
+  ```
+4. Akses aplikasi di `http://localhost:5173`
 
-## React Compiler
+## Konfigurasi
+- Konfigurasi endpoint API dapat diatur di file `src/api/apiClient.js`
+- Styling menggunakan TailwindCSS, konfigurasi di `tailwind.config.js`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Dokumentasi API
+Lihat file `../docs/API.md` untuk daftar endpoint backend yang digunakan frontend.
 
-## Expanding the ESLint configuration
+## Catatan Pengembangan
+- Pastikan backend sudah berjalan sebelum menjalankan frontend
+- Untuk pengujian, gunakan kredensial uji yang tersedia di README root
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
