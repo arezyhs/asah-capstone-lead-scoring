@@ -29,7 +29,7 @@ Berbeda dengan CRM tradisional, SalesPilot mengintegrasikan pemodelan *Machine L
 
 ## 🚀 Live Demo
 
-- **Aplikasi Web**: [Kunjungi SalesPilot di Vercel](#) *(Ganti dengan link Vercel aktual jika ada)*
+- **Aplikasi Web**: [Kunjungi SalesPilot di Vercel](https://asah-capstone-frontend.vercel.app/) *(Ganti dengan link Vercel aktual jika ada)*
 - **API Endpoint Utama**: `GET /health` (Status API), `POST /predict` (Inference ML).
 - **Kredensial Uji**:
   - Username: `sales_user_01`
